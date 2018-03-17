@@ -1,0 +1,35 @@
+<html lang="en">
+<head>
+    <title>兹春利</title>
+    <!-- 不支持../路径和 ./路径-->
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+<div id="clock"></div>
+<script>
+    //跨域 ：协议 端口号  域名 有一个不相同就是跨域
+    //fetch  基于promise
+//    fetch('/clock').then()
+    fetch('/clock',{
+        method:'GET'
+    }).then(function (res) {
+        return res.text();//转成想要的结果
+
+    }).then(function (data) {
+        clock.innerHTML = data
+    })
+   /* setInterval(() => {
+        let xhr = new XMLHttpRequest();
+        xhr.open('get','/clock',true);//true  是异步
+        xhr.onload = function () {
+            if(this.status==200)
+            {
+                clock.innerHTML = xhr.response
+            }
+        };
+        xhr.send();
+    },1000)*/
+
+</script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>兹春利http://www.baidu.com</title>
+    <link rel="stylesheet" href="http://dsf/cn">
+    <img src="" alt="">
+</head>
+<body>
+<script>
+    function c(data) {
+        console.log(data);
+    }
+    let oScript = document.createElement('script')
+    oScript.src=`http://localhost:3000/jsonp?cb=`+c;
+    document.body.appendChild(oScript)
+</script>
+</body>
+</html>
