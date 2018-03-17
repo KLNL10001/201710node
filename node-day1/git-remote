@@ -1,0 +1,136 @@
+本地提到github上
+github上留的只是历史区的代码
+
+先有github账号：
+操作命令如下：
+mkdir git-remote
+cd git-remote
+touch README.MD
+git init
+touch .gitignore 这里面放的是不想提交的文件 git的忽略文件
+https://git-scm.com
+git 不会上传空文件夹，添加.gitkeep在空文件夹内。
+git add .
+git commit -m"git project"
+此时只是在本地，并没有提交到线上
+现在把本地的项目推到线上
+
+创建resp。。。
+一般都选择MIT协议
+创建仓库之后
+echo "# 工程名字">>README.md 实际上就是创建说明文件
+git init
+git add README.md
+git commit -m"first commit"
+关联远程仓库
+git remote add origin https://github.com/zhufengzhufeng/node-project.git
+git push -u origin master（分支名）
+-u第一次有 就会推送到后面的分支上，否则每次写全
+
+查看远程仓库的信息：git remote -v
+
+添加错：git remote add b https://github.com/zhufengzhufeng.com
+如果写错之后删除关联：git remote rm b(写错的名字)
+
+课件8 拉取线上最新课件
+推送代码
+git push origin master 会出来弹框让你输入用户
+
+刷新发现.idea文件被推送上去了
+那么：
+
+rm -rf .idea
+git add .
+git commit -m"remote idea"
+git push origin master
+
+低版本不能直接覆盖高版本
+当线上和线下不一样的时候 需要先拉取代码，然后再推送
+git pull origin master  需要在文件中merge一下  这个是没有冲突的情况下
+然后 git push origin master。
+当有冲突的时候 需要先解决冲突 然后命令如下
+git add .
+git commit -m"merge"
+
+
+课件9  代码 fork-pull-request
+
+git pull origin master(fetch+merge)
+
+##   gh-pages分支来发布我们的静态页
+-在项目中创建一个gh-pages的分支
+将分支提到线上仓库
+找到提供给你的网站
+git checkout -b gh-pages
+touch index.html
+git add .
+git commit -m"add static"
+git push origin gh-pages
+然后再settings中，就可以看到GitHub Pages  点开那个网址就可以看到所设置的内容
+
+##issue问题  可以提交对项目的质疑或者自己的信息
+
+## 更改别人代码  fork是在当前项目下克隆一份，如果代码更新不会随之更新
+
+拉取代码到本地：git clone  项目地址 项目别名
+
+默认就是git仓库而且有origin地址
+
+可以将代码提交到自己的仓库上
+
+git  add .
+git commit -m"request"
+git push origin master
+
+然后把我的提交给它
+只有fork关系才能发送 pull  request请求
+
+合作关系：
+settings->collaborate 然后添加合作者
+然后用git clone就可以下载代码，并有权限进行更新和上传
+界面化操作
+  webstorm->VCS->点击第二项  在工程文件上点击右键即可出现git
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
