@@ -1,18 +1,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>兹春利http://www.baidu.com</title>
-    <link rel="stylesheet" href="http://dsf/cn">
-    <img src="" alt="">
+    <title>ccl</title>
+
 </head>
 <body>
 <script>
+    //必须是一个全局函数
     function c(data) {
         console.log(data);
     }
     let oScript = document.createElement('script')
-    oScript.src=`http://localhost:3000/jsonp?cb=`+c;
+    oScript.src=`http://localhost:3000/jsonp?cb=c`;
     document.body.appendChild(oScript)
 </script>
+<!--script src="http://localhost:3000/jsonp?cb=c"></script-->
 </body>
 </html>

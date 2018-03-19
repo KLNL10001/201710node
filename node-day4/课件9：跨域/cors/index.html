@@ -1,0 +1,16 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ccl</title>
+</head>
+<body>
+<script>
+    var xhr = new XMLHttpRequest();
+    xhr.open('put','http://localhost:3000/clock',true);
+    xhr.onload = function () {
+        console.log(xhr.response)
+    }
+    xhr.send()
+</script>
+</body>
+</html>

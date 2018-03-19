@@ -1,0 +1,91 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>兹春利</title>
+    <!-- 不支持../路径和 ./路径-->
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.css">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2" style="margin-top: 30px;margin-bottom:30px">
+            <div class="col-md-5">
+            <lable for="username">用户名</lable>
+            <input type="text" id="username">
+            </div>
+            <div class="col-md-5">
+            <lable for="password">密码</lable>
+            <input type="text" id="password">
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-primary btn-sm add">添加</button>
+            </div>
+            <ul class="list-group col-md-8 col-md-offset-2">
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+</body>
+<script>
+
+    (function () {
+        let oul =document.querySelector('.list-group');//没有dom映射
+        let username = document.getElementById('username')
+        let password = document.getElementById('password')
+        let add = document.querySelector('.add')
+        let template=function (username,password,id) {
+            return   `<li class="list-group-item clearfix">
+                    <span style="vertical-align: middle">用户名:${username}   密码:${password}</span>
+                    <button class="btn btn-danger btn-sm pull-right remove" data-id="${id}">删除</button>
+               </li>`;
+        };
+        function extracted(data) {//用来将数据渲染到dom上
+            console.log(data)
+            let str = ''
+            data.forEach(item => {
+                str += template(item.username, item.password,item.id)
+                oul.innerHTML = str;
+            })
+        }
+//1、查询所有用户
+        fetch('/user').then(res=>{
+            return res.json()
+        }).then(data=>{
+            extracted(data);
+        }).catch(err=>{
+            err.log()
+        })
+        //2.添加用户  返回添加的哪一项
+        add.addEventListener('click',()=>{
+            fetch('/user',{
+                method:'POST',
+                body:JSON.stringify({username:username.value,password:password.value})
+            }).then(res=>{
+                return res.json();
+            }).then(data=>{
+                //在内存中创建一个div
+                let oDiv=document.createElement('div')
+                //根据出具创建一个li  列表
+                oDiv.innerHTML=template(data.username,data.password,data.id)
+                //将这个列表li扔到我们的页面上
+                oul.appendChild(oDiv.firstElementChild);//获取第一个元素节点
+            })
+        },false)
+        oul.addEventListener('click',(e)=>{
+           if (e.target.tagName==='BUTTON'){
+               //如果当前点击的是按钮
+               let id =e.target.dataset.id ;
+               fetch(`/user?id=${id}`,{
+                   method:'DELETE'
+               }).then(res=>{
+                   return res.json();
+               }).then(data=>{//成功后只是后台数据被删除了  前台要对应的删除dom元素
+                oul.removeChild(e.target.parentNode)
+               })
+           }
+        },false)
+    })()
+</script>
+</html>

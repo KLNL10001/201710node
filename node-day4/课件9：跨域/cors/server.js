@@ -11,18 +11,16 @@ http.createServer(function (req,res) {
 
     console.log( url.parse(req.url,true));
     let {pathname,query} = url.parse(req.url,true);
-    //处理静态文件的
-    if (pathname==='/jsonp')
+    res.setHeader('Access-Control-Allow-Origin','*')
+    res.setHeader('Access-Control-Allow-Methods','GET,POST,PUT,DELETE,OPTIONS')
+    if (pathname === '/clock')
     {
-        // console.log('ok')
-        // let school = {name:'zch'}
-        //通过script标签拿到的响应数据在script标签的响应体里
-        // res.end(JSON.stringify(school))
-        // res.end(`var a = ${school}`)
-        // res.end(`b(1)`)
-         console.log(query);
-        res.end(`${query.cb}(1)`)
-        return ;
+        return res.end('2017.11.19')
+    }
+    //OPTIONS成功一次就不会再发了
+    if(req.method==='OPTIONS')
+    {
+        res.end()
     }
     fs.stat('.'+ pathname,function (err,stats) {
         if (err)

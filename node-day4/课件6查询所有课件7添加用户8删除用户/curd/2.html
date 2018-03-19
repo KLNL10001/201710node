@@ -1,0 +1,18 @@
+<html lang="en">
+<head>
+
+</head>
+<body>
+<script>
+    let template=function (username,password) {
+        return   `<li class="list-group-item">
+                    username:${username}   password:${password}
+               </li>`;
+    };
+    let oDiv=document.createElement('div')
+    oDiv.innerHTML=template(111,222)
+    console.log(oDiv.childNodes);;
+    document.body.appendChild(oDiv.firstElementChild)
+</script>
+</body>
+</html>
