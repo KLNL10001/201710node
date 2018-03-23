@@ -11,5 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.3"
+  },
+  "devDependencies": {
+    "babel-preset-env": "^1.6.1"
   }
 }
