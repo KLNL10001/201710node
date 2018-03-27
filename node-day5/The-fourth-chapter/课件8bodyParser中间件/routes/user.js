@@ -36,6 +36,7 @@ router.get('/reg',function (req,res) {
 router.post('/reg',function (req,res) {
     console.log(req.body);//{ username: 'rrrr', password: 'egg' }
     console.log(req.headers['content-type'])//application/x-www-form-urlencoded 表单格式
+    res.send(req.body)
 
 })
 
