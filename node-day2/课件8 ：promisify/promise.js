@@ -8,7 +8,6 @@ let fs=require('fs')//file system
 function read() {
     return new Promise((resolve,reject)=>{
         resolve('成功')
-
     })
 }
 

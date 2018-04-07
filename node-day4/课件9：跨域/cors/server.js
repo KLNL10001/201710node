@@ -8,7 +8,6 @@ let users = [{username:'zfpx',password:'admin',id:1},{username:'你好',password
 
 //.css  .js  .   前后端通信是通过字符串来通信的
 http.createServer(function (req,res) {
-
     console.log( url.parse(req.url,true));
     let {pathname,query} = url.parse(req.url,true);
     res.setHeader('Access-Control-Allow-Origin','*')

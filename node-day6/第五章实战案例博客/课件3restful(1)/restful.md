@@ -5,7 +5,6 @@ Resources Representational State Transfer(资源表现层状态转化)
 状态转化(State Transfer)HTTP协议里面，四个表示操作方式的动词 对应四种基本操作
 某些动作是HTTP动词表示不了的，你就应该把动作做成一种资源
 
-
 RESTful API设计
 
 使用http协议
@@ -23,6 +22,11 @@ HTTP动词：其实就是请求行里的method
   -过滤关键字
   -排序字段
  GET/collection:返回资源对象的列表（数组）
+
+ 服务器端可以向客户端种cookie,客户端也可以删除和增加以及修改cookie，并向服务器端发送cookie
+ cookie的特点是 只有客户端知道，服务器是不做记录的
+
+
 
 
 

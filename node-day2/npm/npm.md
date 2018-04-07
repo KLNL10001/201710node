@@ -58,7 +58,7 @@ npm init -y（是默认的意思）
  在当前目录下安装
 
  >package.json中scripts 可以配置一些快捷键
- packa.json为如下的时候：
+ package.json为如下的时候：
 
    "scripts": {
      "test": "echo \"Error: no test specified\" && exit 1"

@@ -1,0 +1,23 @@
+{
+  "name": "201710node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lll.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KLNL10001/201710node.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KLNL10001/201710node/issues"
+  },
+  "homepage": "https://github.com/KLNL10001/201710node#readme",
+  "dependencies": {
+    "express-session": "^1.15.6",
+    "mongoose": "^5.0.13"
+  }
+}

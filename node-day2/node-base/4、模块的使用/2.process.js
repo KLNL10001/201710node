@@ -39,7 +39,7 @@ process.nextTick(function () {
 setImmediate(
     function () {
         // console.log('setImmediate')
-         // console.log(this)//this指向它自己 Immediate
+        // console.log(this)//this指向它自己 Immediate
     }
 )
 //在第二个小本中 执行先后和setImmediate 看情况而定
@@ -65,7 +65,6 @@ setTimeout((...args)=> {
     console.log(args.length)//2
     console.log(args)//[ '吃饭', '当然吃了' ]
     console.log(args[1])//当然吃了
-
 },100,'吃饭','当然吃了')
 
 //...写在形参中代表的是剩余运算符，其他的时候叫做展开或者拓展运算符 ...是ES6的语法
