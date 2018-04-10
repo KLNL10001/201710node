@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="cclModel">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--指令系统 可以是属性-->
+<div ng-controller="cclCtrl">
+    <h1>{{name}}</h1>
+</div>
+</body>
+<!--引入JS脚本-->
+<script src="angular.js"></script>
+<script>
+    //当引入js脚本之后会在windows下挂一个angular的属性：angular
+    //param1 是名字  param2为依赖的模块
+    //一切从模块开始 要先定义一个模块  模块是个容器 是一个框
+    angular.module('cclModel',[])//两个参数定义一个模块
+    //一个参数表示调用获取这个模块
+    //通过模块的controller方法定义一个控制器，名字叫做cclCtrl
+    //当定义一个控制器的时候，angular会买一送一，送你一个scope
+    //scope其实是一个空的JS对象{}
+    //依赖注入 我们定义控制器的时候 只需要在参数列表里生命$scope即可
+    //声明之后就可以在函数中使用。它由容器也就是angular容器帮我们实例化
+    angular.module('cclModel').controller('cclCtrl',function ($scope) {
+        //控制器的作用就是为$scope初始化属性
+        //$scope 类似于数据模型Model
+        $scope.name='ccl';
+
+    })
+</script>
+</html>
