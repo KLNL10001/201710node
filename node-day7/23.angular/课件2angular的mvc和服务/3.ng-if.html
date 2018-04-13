@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!--生成一个对象根scope rootScope-->
+<html lang="en" ng-app="cclModel">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            border-right:red 1px solid;
+        }
+    </style>
+</head>
+<body>
+<!--子scope-->
+<div ng-controller="cclCtrl" ng-show="false">
+  <!--div ng-if="show" class="ngif"-->
+    父控制器姓名： <span ng-bind="name"></span>
+      <!--孙scope-->
+      <br ng-controller="childCtrl">
+          子控制器姓名： <span ng-bind="name"></span></br>
+        子控制器年龄： <span ng-bind="age"></span>
+      <!--/div-->
+  </div>
+</div>
+</body>
+<script src="angular.js"></script>
+<script>
+    angular.module('cclModel',[])
+    angular.module('cclModel').controller('cclCtrl',function ($scope) {
+//        $scope.show ='hello'
+        $scope.name ='parent'
+        $scope.age ='100'
+    })
+    angular.module('cclModel').controller('childCtrl',function ($scope) {
+        $scope.name ='child'
+        console.log($scope)
+    })
+</script>
+</html>

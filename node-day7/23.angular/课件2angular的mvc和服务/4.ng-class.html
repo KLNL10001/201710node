@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="cclModel">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="bootstrap.css">
+</head>
+<body>
+<div ng-controller="cclCtrl"  class="container">
+    <form name="userform">
+        <div class="control-group" ng-class="{'has-error':userform.username.$dirty && userform.username.$pristine,'has-success':userform.username.$valid}">
+           <div class="control-label">用户名</div>
+            <input  ng-minlength="3" ng-maxlength="6" name="email"  ng-required="true" ng-pattern="reg" name="username" type="text" class="form-control" ng-model="user.username">
+            <p class="help-block" ng-show="userform.username.$error.minlength">
+                最小长度不够3 位
+            </p>
+            <p class="help-block" ng-show="userform.username.$error.maxlength">
+                最大长度不能超过6位
+            </p>
+            <p class="help-block" ng-show="userform.username.$error.pattern">
+                只能为数字
+            </p>
+        </div>
+        <div class="control-group">
+            <div class="control-label">邮箱</div>
+            <input type="email" class="form-control" ng-model="user.email">
+        </div>
+        <div class="control-group">
+            <button class="btn btn-default" ng-click="reg()">注册</button>
+            <button class="btn btn-danger"  ng-click="reset()">重置</button>
+        </div>
+    </form>
+</div>
+</body>
+<script src="angular.js"></script>
+<script>
+      angular.module('cclModel',[])//两个参数定义一个模块
+      angular.module('cclModel').controller('cclCtrl',function ($scope) {
+        $scope.user={};
+        $scope.reg = function () {
+            console.log($scope.user)
+        }
+        $scope.reset = function () {
+            $scope.user = {}
+        }
+        $scope.reg=/^\d+$/;
+    })
+    //1当用户输入正确时变绿 不正确时变红
+      //1.在input上定义一些校验的规则
+      //2
+    //2当用户输入错误时提示错误的原因
+</script>
+</html>
