@@ -25,15 +25,25 @@
 </body>
 <script src="angular.js"></script>
 <script>
+    //控制器
+    var http1;
+    var http2;
     angular.module('cclModel',[])
-    angular.module('cclModel').controller('cclCtrl',function ($scope) {
+    angular.module('cclModel').controller('cclCtrl',function ($scope,$http) {
 //        $scope.show ='hello'
+        http1 = $http
+        $http.custom = 'custom'
         $scope.name ='parent'
         $scope.age ='100'
     })
-    angular.module('cclModel').controller('childCtrl',function ($scope) {
+    angular.module('cclModel').controller('childCtrl',function ($scope,$http) {
         $scope.name ='child'
-        console.log($scope)
+        http2 = $http
+        setTimeout(function () {
+            console.log(http2===http1)//true  说明是单例的
+            console.log($http.custom)
+        })
+//        console.log($scope)
     })
 </script>
 </html>

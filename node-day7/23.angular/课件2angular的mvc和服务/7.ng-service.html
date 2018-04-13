@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="cclModel">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="bootstrap.css">
+</head>
+<body>
+<div ng-controller="cclCtrl">
+<table class="table table-responsive">
+    <tr>
+        <td>商品名称</td><td>商品价格</td><td>商品数量</td><td>商品金额</td><td>操作</td>
+    </tr>
+    <tr ng-repeat="item in items">
+        <td>{{item.name}}</td><td>{{item.price | currency:'￥'}}</td><td><input type="text" ng-model="item.amount"></td>
+        <td>{{item.amount*item.price | currency }}</td>
+        <td><button ng-click="remove(item)">删除</button></td>
+    </tr>
+    <tr>
+        <td colspan="4">总金额:{{total()}}</td>
+        <td><input type="text" ng-model="discount"></td>
+        <td>折后金额:{{total()*(discount?discount:1)}})</td>
+    </tr>
+</table>
+    <span>{{1288323623006 | date:'yyyy-MM-dd HH:mm:ss Z'}}</span>
+    <pre>{{{'name':'value',age:6}| json}}</pre>
+</div>
+</body>
+<script src="angular.js"></script>
+<script>
+    angular.module('cclModel',[])//两个参数定义一个模块
+    angular.module('cclModel').factory('ItemService',function ( ) {
+        var items = [{
+            name:'iphone7',
+            price:5000,
+            amount:1,
+        },{
+            name:'华为P9',
+            price:3800,
+            amount:1,
+        },{
+            name:'小牛电动M1',
+            price:3300,
+            amount:1,
+        }];
+        return {
+            list:function () {
+                return items;
+            },
+            remove:function (item) {
+                items = items.filter(function (current) {
+                    return current != item
+                })
+                return items
+            }
+        }
+    })
+    angular.module('cclModel').controller('cclCtrl',function ($scope,ItemService) {
+
+        $scope.items = ItemService.list()
+        $scope.total = function () {
+          $scope.items.reduce(function (current,next) {
+              return current + next.price*next.amount
+          },0)
+      }
+      $scope.remove = function (item) {
+          $scope.items = ItemService.remove(item)
+
+          return $scope.items
+      }
+    })
+</script>
+</html>

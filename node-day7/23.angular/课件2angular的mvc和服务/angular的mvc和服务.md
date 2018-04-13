@@ -39,6 +39,33 @@ ng-hide  布尔类型为false时显示 true时隐藏
 ng-repeat 遍历数组
 
 
+            服务
+服务是能提供特定功能的一个对象，有以下特点：
+1、service都是单例的
+2、angular会自动创建实例并注入，不需要手工创建
+3、service在整个应用的生命周期存在，可以共享数据
+4、$http服务
+$http是对jquery  ajax的封装
+
+自定义服务：
+可以用模块的factory方法定义自己的服务  可以从网上搜例子  是个工厂函数
+
+                        过滤器
+filter是用来数据格式化的服务
+filter可以级联使用(用|分隔)
+filter可以传递参数的
+currency 货币过滤器
+
+date 日期过滤器
+
+json对象过滤器
+
+
+
+
+
+
+
 
 
 

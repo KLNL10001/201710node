@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="cclModel">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="bootstrap.css">
+</head>
+<body>
+<div ng-controller="cclCtrl">
+<table class="table table-responsive">
+    <tr>
+        <td>商品名称</td><td>商品价格</td><td>商品数量</td><td>商品金额</td>
+    </tr>
+    <tr ng-repeat="item in items">
+        <td>{{item.name}}</td><td>{{item.price}}</td><td><input type="text" ng-model="item.amount"></td>
+        <td>{{item.amount*item.price}}</td>
+    </tr>
+    <tr>
+        <td colspan="4">总金额:{{total()}}</td>
+        <td><input type="text" ng-model="discount"></td>
+        <td>折后金额:{{total()*(discount?discount:1)}})</td>
+    </tr>
+</table>
+</div>
+</body>
+<script src="angular.js"></script>
+<script>
+    angular.module('cclModel',[])//两个参数定义一个模块
+    angular.module('cclModel').controller('cclCtrl',function ($scope,$http) {//$http是对ajax jquery的封装
+        $scope.items=[]
+        $http({
+            url:'items.json',
+            type:'GET'
+        }).success(function (data) {
+            console.log('huahuahau='+data);
+            $scope.items=data;
+        })
+        $scope.total = function () {
+          $scope.items.reduce(function (current,next) {
+              return current + next.price*next.amount
+          },0)
+      }
+    })
+</script>
+</html>
